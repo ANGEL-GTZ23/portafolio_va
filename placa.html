@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema con Código y Glosario</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content-wrapper {
+            background: #f5f5f5;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .tema-titulo {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .tema-titulo h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .tema-titulo p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h3 {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .code-container {
+            background: #2d3748;
+            border-radius: 10px;
+            padding: 20px;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        .code-container pre {
+            margin: 0;
+            color: #e2e8f0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .code-container code {
+            display: block;
+        }
+
+        .keyword { color: #ff79c6; }
+        .function { color: #50fa7b; }
+        .string { color: #f1fa8c; }
+        .comment { color: #6272a4; }
+        .number { color: #bd93f9; }
+
+        .glosario-item {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glosario-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .glosario-item h4 {
+            color: #667eea;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .glosario-item p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .parametros {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .parametros strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .parametros code {
+            background: #2d3748;
+            color: #50fa7b;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .tema-titulo h2 {
+                font-size: 1.5em;
+            }
+
+            .section h3 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Realizado por: Angel Jeshua Gutierrez Roblero</h1>
+            <p>Especialidad de IA del CBTIS 144</p>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="tema-titulo">
+                <h2>Tema 10: OCR_PLACA</h2>
+                <p>Creación y uso de funciones personalizadas</p>
+            </div>
+
+            <div class="section">
+                <h3>📝 Código del Ejemplo</h3>
+                <div class="code-container">
+                    <pre>
+#C:\Program Files\Tesseract-OCR\tesseract.exe
+#C:\Users\MATUTINO\AppData\Local\Programs\Tesseract-OCR\tesseract.exe
+import cv2
+import pytesseract
+pytesseract.pytesseract.tesseract_cmd=r"C:\Users\MATUTINO\AppData\Local\Programs\Tesseract-OCR\tesseract.exe"
+
+#listas de placa aceptadas en el estacionamiento del CBTis 144
+placas_autorizadas=["XYZ789","RSS1536","7ADB538","AA-000-AA"]
+placas_no_autorizadas=["AS-852-XZ","AS52 RXZ"]
+
+#cargar placa a leer
+placa_xy=cv2.imread("placas.jpg")
+placa_a1=cv2.imread("PLACA.png")
+placa_real_1=cv2.imread("Placas_3.jpg")
+placa_real_2=cv2.imread("placa_4.jpg")
+placa_no_autorizada=cv2.imread("placa_no_atorizada.jpg")
+placa_2_no=cv2.imread("placa_no_2.jpg")
+
+placanueva=cv2.resize(placa_xy,(800,300))
+placa_nuevo=cv2.resize(placa_a1,(800,300))
+placa_real1=cv2.resize(placa_real_1,(800,300))
+placa_real2=cv2.resize(placa_real_2,(800,300))
+placa_no=cv2.resize(placa_no_autorizada,(800,300))
+placa_no_2=cv2.resize(placa_2_no,(800,300))
+
+placa_gris=cv2.cvtColor(placanueva,cv2.COLOR_BGR2GRAY)
+placa_2gris=cv2.cvtColor(placa_nuevo,cv2.COLOR_BGR2GRAY)
+placa_real1_gris=cv2.cvtColor(placa_real1,cv2.COLOR_BGR2GRAY)
+placa_real2_gris=cv2.cvtColor(placa_real2,cv2.COLOR_BGR2GRAY)
+placano=cv2.cvtColor(placa_no_autorizada,cv2.COLOR_BGR2GRAY)
+placa_noautorizada_2=cv2.cvtColor(placa_no_2,cv2.COLOR_BGR2GRAY)
+
+plca_res=cv2.threshold(placa_gris,120,255,cv2.THRESH_BINARY)[1]
+placa_res=cv2.threshold(placa_2gris,120,255,cv2.THRESH_BINARY)[1]
+placa_real1_res=cv2.threshold(placa_real1_gris,120,255,cv2.THRESH_BINARY)[1]
+placa_real2_res=cv2.threshold(placa_real2_gris,120,255,cv2.THRESH_BINARY)[1]
+placa_no_res=cv2.threshold(placano,120,255,cv2.THRESH_BINARY)[1]
+placa_2_res=cv2.threshold(placa_noautorizada_2,120,255,cv2.THRESH_BINARY)[1]
+
+texto_placa=pytesseract.image_to_string(plca_res,lang="spa")
+texto_placa2=pytesseract.image_to_string(placa_res,lang="spa")
+texto_placa_real1=pytesseract.image_to_string(placa_real1_res,lang="spa")
+texto_placa_real2=pytesseract.image_to_string(placa_real2_res,lang="spa")
+texto_placano=pytesseract.image_to_string(placa_no_res,lang="spa")
+texto_placano2=pytesseract.image_to_string(placa_2_res,lang="spa")
+
+texto_limpio=texto_placa.strip().replace(" ","")
+texto_limpio2=texto_placa2.strip().replace(" ","")
+texto_limpio_real1=texto_placa_real1.strip().replace(" ","")
+texto_limpio_real2=texto_placa_real2.strip().replace(" ","")
+texto_no_limpio=texto_placano.strip().replace(" ","")
+texto_no_limpio2=texto_placano2.strip().replace(" ","")
+
+#buscar la placa en la lista autorizada
+if texto_limpio in placas_autorizadas:
+    print("OKEY!!,\nBienvenido al estacionamiento del CBTis 144")
+elif texto_limpio2 in placas_autorizadas:
+    print("OKEY!!,\nBienvenido al estacionamiento del CBTis 144")
+elif texto_limpio_real1 in placas_autorizadas:
+    print("OKEY!! \nBienvenido al estacionamiento del CBTis 144")
+elif texto_limpio_real2 in placas_autorizadas:
+    print("OKEY!! \nBienvenido al estacionamiento del CBTis 144")
+elif texto_no_limpio in placas_no_autorizadas:
+    print("OKEY!! \nNo tienes permitido pasar al estacionamiento del CBTis 144")
+elif texto_no_limpio2 in placas_no_autorizadas:
+    print("OKEY!!! \nNo tienes permitido pasar al estacionamiento del CBTis 144")
+
+
+print(texto_limpio)
+print(texto_limpio2)
+print(texto_limpio_real1)
+print(texto_limpio_real2)
+print(texto_no_limpio)
+print(texto_no_limpio2)
+
+print("Autorizadas")
+
+print(texto_placa)
+print(texto_placa2)
+print(texto_placa_real1)
+print(texto_placa_real2)
+
+print("No autorizadas")
+print(texto_placano)
+print(texto_placano2)
+
+cv2.imshow("imagen analizada",plca_res)
+cv2.imshow("imagen 2 analizada",placa_res)
+cv2.imshow("imagen real analizada",placa_real1_res)
+cv2.imshow("imagen real 2 analizada",placa_real2_res)
+cv2.imshow("imagen de placa no permitida",placa_no_res)
+cv2.imshow("imagen no permitida",placa_2_res)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+                    </pre>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>📚 Glosario de Funciones</h3>
+
+                <div class="glosario-item">
+                    <h4>imread</h4>
+                    <p>funcion que permite leer y abrir una imagen</p>
+                    <h4>imsho</h4>
+                    <p>mostrar la imagen en una ventana</p>
+                    <h4> waitKey </h4>
+                    <p> sirve para esperar una tecla del teclado mientras espera una imagen </p>
+                    <h4> destroyAllWindows </h4>
+                    <p>cierra la ventana cuyo nombre pongas entre comillas</p>
+                    <h4>COLOR_BGR2GRAY</h4>
+                    <p>sirve para convertir una imagen a blanco y negro (escala de grises) en OpenCV.</p>
+                </div>
+
+               
+
+               
+            </div>
+        </div>
+    </div>
+</body>
+</html>
